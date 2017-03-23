@@ -218,11 +218,10 @@ class LDAPAuthenticator(Authenticator):
                     groupfilter = (
                         '(|'
                         '(member={userdn})'
-                        '(uniqueMember={userdn})'
                         '(memberUid={uid})'
                         ')'
                     ).format(userdn=userdn, uid=username)
-                    groupattributes = ['member', 'uniqueMember', 'memberUid']
+                    groupattributes = ['member', 'memberUid']
                     if conn.search(
                         group,
                         search_scope=ldap3.BASE,
